@@ -14,6 +14,7 @@
 		BE2211F61D0FFC640049BA9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2211F41D0FFC640049BA9C /* LaunchScreen.storyboard */; };
 		BE2212011D0FFC640049BA9C /* MuseXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2212001D0FFC640049BA9C /* MuseXTests.swift */; };
 		BE22120C1D0FFC640049BA9C /* MuseXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */; };
+		BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22121D1D100FC20049BA9C /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		BE2212071D0FFC640049BA9C /* MuseXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseXUITests.swift; sourceTree = "<group>"; };
 		BE22120D1D0FFC640049BA9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE22121D1D100FC20049BA9C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		BE2212191D1003720049BA9C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BE22121D1D100FC20049BA9C /* APIManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */,
 				BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */,
 				BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */,
 			);
