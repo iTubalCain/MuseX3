@@ -97,12 +97,10 @@
 		BE2211EA1D0FFC640049BA9C /* MuseX */ = {
 			isa = PBXGroup;
 			children = (
-				BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */,
-				BE2211ED1D0FFC640049BA9C /* ViewController.swift */,
-				BE2211EF1D0FFC640049BA9C /* Main.storyboard */,
-				BE2211F21D0FFC640049BA9C /* Assets.xcassets */,
-				BE2211F41D0FFC640049BA9C /* LaunchScreen.storyboard */,
-				BE2211F71D0FFC640049BA9C /* Info.plist */,
+				BE22121A1D1003830049BA9C /* Controller */,
+				BE2212191D1003720049BA9C /* Model */,
+				BE22121B1D1003C50049BA9C /* View */,
+				BE22121C1D1003E70049BA9C /* Supporting Files */,
 			);
 			path = MuseX;
 			sourceTree = "<group>";
@@ -123,6 +121,40 @@
 				BE22120D1D0FFC640049BA9C /* Info.plist */,
 			);
 			path = MuseXUITests;
+			sourceTree = "<group>";
+		};
+		BE2212191D1003720049BA9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BE22121A1D1003830049BA9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE2211ED1D0FFC640049BA9C /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BE22121B1D1003C50049BA9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE2211F41D0FFC640049BA9C /* LaunchScreen.storyboard */,
+				BE2211EF1D0FFC640049BA9C /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BE22121C1D1003E70049BA9C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */,
+				BE2211F21D0FFC640049BA9C /* Assets.xcassets */,
+				BE2211F71D0FFC640049BA9C /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
