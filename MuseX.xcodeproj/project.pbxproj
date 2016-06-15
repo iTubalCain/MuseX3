@@ -17,6 +17,7 @@
 		BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22121D1D100FC20049BA9C /* APIManager.swift */; };
 		BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* Constants.swift */; };
 		BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9331D10DF2100D6AC89 /* Video.swift */; };
+		BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9381D11103000D6AC89 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,9 @@
 		BE22121D1D100FC20049BA9C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		BEDDF9311D10DD1900D6AC89 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BEDDF9331D10DF2100D6AC89 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		BEDDF9361D11103000D6AC89 /* MuseX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MuseX-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEDDF9371D11103000D6AC89 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BEDDF9381D11103000D6AC89 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				BE22121A1D1003830049BA9C /* Controller */,
 				BE2212191D1003720049BA9C /* Model */,
 				BE22121B1D1003C50049BA9C /* View */,
+				BEDDF9351D110F3300D6AC89 /* Obj-C */,
 				BEDDF9301D10DCEC00D6AC89 /* Utils */,
 				BE22121C1D1003E70049BA9C /* Supporting Files */,
 			);
@@ -172,6 +177,16 @@
 				BEDDF9311D10DD1900D6AC89 /* Constants.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		BEDDF9351D110F3300D6AC89 /* Obj-C */ = {
+			isa = PBXGroup;
+			children = (
+				BEDDF9361D11103000D6AC89 /* MuseX-Bridging-Header.h */,
+				BEDDF9371D11103000D6AC89 /* Reachability.h */,
+				BEDDF9381D11103000D6AC89 /* Reachability.m */,
+			);
+			name = "Obj-C";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +324,7 @@
 				BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */,
 				BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */,
 				BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */,
+				BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */,
 				BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,10 +469,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MuseX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xamples.musex.MuseX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MuseX/MuseX-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -464,10 +483,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MuseX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xamples.musex.MuseX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MuseX/MuseX-Bridging-Header.h";
 			};
 			name = Release;
 		};

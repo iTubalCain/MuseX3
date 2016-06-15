@@ -12,3 +12,9 @@ import Foundation
 
 typealias JSONArray = [AnyObject]
 typealias JSONDictionary = [String: AnyObject]
+
+// Constants
+
+let NO_ACCESS = "No Internet access available"
+let WIFI = "WiFi access available"
+let WWAN = "Cellular access available"
