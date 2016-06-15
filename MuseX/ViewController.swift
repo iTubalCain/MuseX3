@@ -12,8 +12,14 @@ class ViewController: UIViewController {
     
     var videos = [Video]()
 
+    @IBOutlet weak var displayLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
+        
+        reachabilityStatusChanged()
         
 //      print(reachabilityStatus)
 
@@ -29,6 +35,25 @@ class ViewController: UIViewController {
         for (index, video) in videos.enumerate() {
             print("\(index + 1): \(video.releaseDate)")
         }
+    }
+    
+    func reachabilityStatusChanged() {
+        switch reachabilityStatus {
+            case NO_ACCESS:
+                view.backgroundColor = UIColor.orangeColor()
+                displayLabel.text = NO_ACCESS
+            case WIFI:
+                view.backgroundColor = UIColor.greenColor()
+                displayLabel.text = WIFI
+            case WWAN:
+                view.backgroundColor = UIColor.yellowColor()
+                displayLabel.text = WWAN
+            default: return
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
 
 }
