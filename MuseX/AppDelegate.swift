@@ -9,7 +9,7 @@
 import UIKit
 
 var reachability        : Reachability?
-var reachabilityStatus  = WIFI
+var reachabilityStatus  = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
         internetCheck = Reachability.reachabilityForInternetConnection()
         internetCheck?.startNotifier()  // observe
+        statusChangedWithReachability(internetCheck!) // prime the pump
         
         return true
     }

@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  MuseX
-//
+// 
 //  Created by Will on 6/14/16.
 //  Copyright © 2016 Will Wagers. All rights reserved.
 //
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
         
         reachabilityStatusChanged()
         
@@ -48,7 +48,8 @@ class ViewController: UIViewController {
             case WWAN:
                 view.backgroundColor = UIColor.yellowColor()
                 displayLabel.text = WWAN
-            default: return
+            default:
+                return
         }
     }
     
