@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var videos = [Video]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +19,14 @@ class ViewController: UIViewController {
         api.loadData("http://itunes.apple.com/us/rss/topmusicvideos/limit=10/json", completion: didLoadData)
     }
     
-    func didLoadData(result: String) {
-        print(result)
+    func didLoadData(videos: [Video]) {
+        self.videos = videos
+//        for video in videos {
+//            print("Title: \(video.title)")
+//        }
+        for (index, video) in videos.enumerate() {
+            print("\(index + 1): \(video.releaseDate)")
+        }
     }
 
 }

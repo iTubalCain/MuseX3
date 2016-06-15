@@ -10,7 +10,7 @@ import Foundation
 
 class APIManager {
     
-    func loadData(urlString: String, completion: (result: String) -> Void) {
+    func loadData(urlString: String, completion: [Video] -> Void) {
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
 //      let session = NSURLSession.sharedSession()
         let session = NSURLSession(configuration: config)
@@ -21,31 +21,37 @@ class APIManager {
             (data, response, error) -> Void in
 
                 if error != nil {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(result: (error!.localizedDescription))
-                    }
+                        print(error!.localizedDescription)
                 } else {
 //                  print(data)
                     do {
-                        /* .AllowFragments - top level object is NOT Array or Dictionary. Any type of string ot value. NJSONSerialization requires do-try-catch. It converts the NDData into a JSON obkect and casts it to a Dcitoinary.
+                        /* .AllowFragments - top level object is NOT Array or Dictionary. Any type of string ot value. NJSONSerialization requires do-try-catch. It converts the NDData into a JSON obkect and casts it to a Dictionary.
                          */
                         if let json = try NSJSONSerialization.JSONObjectWithData(data!,
-                            options: .AllowFragments) as? JSONDictionary {
-//                            print(json)
-                            let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                            dispatch_async(dispatch_get_global_queue(priority, 0)) { 
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    completion(result: ("NSJSONSerialization successful!"))
+                            options: .AllowFragments) as? JSONDictionary,
+                            feed = json["feed"] as? JSONDictionary, // root record
+                            entries = feed["entry"] as? JSONArray { // n entries
+                            
+//                              print(json)
+                                var videos = [Video]()
+                                for entry in entries {
+                                    let entry = Video(data: entry as! JSONDictionary)
+                                    videos.append(entry)
+                                    }
+//                              print("No. Videos: \(videos.count)")
+                            
+                                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                    completion(videos) // pass back videos array
                                     }
                                 }
                             }
                     } catch {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            completion(result: ("NSJSONSerialization failed!"))
-                        }
+                        print("NSJSONSerialization failed!")
                     }
                 }
-        }
+            }
         task.resume()  // else stays in suspended state
     }
 }
