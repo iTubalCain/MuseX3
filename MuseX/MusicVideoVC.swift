@@ -22,8 +22,11 @@ class MusicVideoVC: UITableViewController {
         
         //      print(reachabilityStatus)
         
+    }
+    
+    func runAPI() {
         let api = APIManager()
-        api.loadData("http://itunes.apple.com/us/rss/topmusicvideos/limit=50/json", completion: didLoadData)
+        api.loadData(ITUNES_URL, completion: didLoadData)
     }
     
     func didLoadData(videos: [Video]) {
@@ -41,15 +44,41 @@ class MusicVideoVC: UITableViewController {
         switch reachabilityStatus {
         case NO_ACCESS:
             view.backgroundColor = UIColor.orangeColor()
-//            displayLabel.text = NO_ACCESS
-        case WIFI:
-            view.backgroundColor = UIColor.greenColor()
-//            displayLabel.text = WIFI
-        case WWAN:
-            view.backgroundColor = UIColor.yellowColor()
-//            displayLabel.text = WWAN
+            // Hack to avoid warning: "Presenting view controllers on detached view controllers is discouraged"
+            dispatch_async(dispatch_get_main_queue()) {
+            let alert = UIAlertController(title: NO_ACCESS, message: "Check your Internet connection", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .Default) {
+                action -> Void in print("Ok")
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) {
+                action -> Void in print("Cancel")
+            }
+            let deleteAction = UIAlertAction(title: "Delete", style: .Default) {
+                action -> Void in print("Delete")
+            }
+            
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            } // end Hack
+            
+////            displayLabel.text = NO_ACCESS
+//        case WIFI:
+//            view.backgroundColor = UIColor.greenColor()
+////            displayLabel.text = WIFI
+//        case WWAN:
+//            view.backgroundColor = UIColor.yellowColor()
+////            displayLabel.text = WWAN
         default:
-            return
+            view.backgroundColor = UIColor.greenColor()
+            if videos.count > 0 {
+                print("Do not refresh API") // data already loaded
+            } else {
+                runAPI()
+            }
         }
     }
     
