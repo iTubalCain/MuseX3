@@ -15,6 +15,8 @@
 		BE2212011D0FFC640049BA9C /* MuseXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2212001D0FFC640049BA9C /* MuseXTests.swift */; };
 		BE22120C1D0FFC640049BA9C /* MuseXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */; };
 		BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22121D1D100FC20049BA9C /* APIManager.swift */; };
+		BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* Constants.swift */; };
+		BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9331D10DF2100D6AC89 /* Video.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseXUITests.swift; sourceTree = "<group>"; };
 		BE22120D1D0FFC640049BA9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE22121D1D100FC20049BA9C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		BEDDF9311D10DD1900D6AC89 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BEDDF9331D10DF2100D6AC89 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 				BE22121A1D1003830049BA9C /* Controller */,
 				BE2212191D1003720049BA9C /* Model */,
 				BE22121B1D1003C50049BA9C /* View */,
+				BEDDF9301D10DCEC00D6AC89 /* Utils */,
 				BE22121C1D1003E70049BA9C /* Supporting Files */,
 			);
 			path = MuseX;
@@ -129,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				BE22121D1D100FC20049BA9C /* APIManager.swift */,
+				BEDDF9331D10DF2100D6AC89 /* Video.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -158,6 +164,14 @@
 				BE2211F71D0FFC640049BA9C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEDDF9301D10DCEC00D6AC89 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BEDDF9311D10DD1900D6AC89 /* Constants.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +307,9 @@
 			files = (
 				BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */,
 				BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */,
+				BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */,
 				BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */,
+				BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +536,7 @@
 				BE2212121D0FFC640049BA9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE2212131D0FFC640049BA9C /* Build configuration list for PBXNativeTarget "MuseXTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +545,7 @@
 				BE2212151D0FFC640049BA9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE2212161D0FFC640049BA9C /* Build configuration list for PBXNativeTarget "MuseXUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +554,7 @@
 				BE2212181D0FFC640049BA9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
