@@ -1,17 +1,18 @@
 //
 //  ViewController.swift
 //  MuseX
-// 
+//
 //  Created by Will on 6/14/16.
 //  Copyright © 2016 Will Wagers. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var videos = [Video]()
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var displayLabel: UILabel!
     
     override func viewDidLoad() {
@@ -24,7 +25,7 @@ class ViewController: UIViewController {
 //      print(reachabilityStatus)
 
         let api = APIManager()
-        api.loadData("http://itunes.apple.com/us/rss/topmusicvideos/limit=10/json", completion: didLoadData)
+        api.loadData("http://itunes.apple.com/us/rss/topmusicvideos/limit=50/json", completion: didLoadData)
     }
     
     func didLoadData(videos: [Video]) {
@@ -35,6 +36,7 @@ class ViewController: UIViewController {
         for (index, video) in videos.enumerate() {
             print("\(index + 1): \(video.releaseDate)")
         }
+        tableView.reloadData()
     }
     
     func reachabilityStatusChanged() {
@@ -56,6 +58,22 @@ class ViewController: UIViewController {
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
-
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return videos.count
+    }
+    
+    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let video = videos[indexPath.row]
+        cell.textLabel?.text = ("\(indexPath.row + 1)")
+        cell.detailTextLabel?.text = video.title
+        return cell
+    }
+  
+    
 }
 
