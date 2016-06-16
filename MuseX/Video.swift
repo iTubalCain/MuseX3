@@ -68,10 +68,10 @@ class Video {
         if let imImage = data["im:image"] as? JSONArray,
             image = imImage[2] as? JSONDictionary,
             image2 = image["label"] as? String {
-                _imageURL = image2.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
-        } else {
-            _imageURL = NO_STRING_FOUND
-        }
+            _imageURL = image2.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
+            } else {
+                _imageURL = NO_STRING_FOUND
+            }
 
         if let imArtist = data["im:artist"] as? JSONDictionary,
             label = imArtist["label"] as? String {

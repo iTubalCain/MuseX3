@@ -1,4 +1,4 @@
-//
+
 //  MusicVideoTableViewCell.swift
 //  MuseX
 //
@@ -11,8 +11,8 @@ import UIKit
 class MusicVideoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var musicImage: UIImageView!
-    @IBOutlet weak var rank: UILabel!
     @IBOutlet weak var title: UILabel!
+    
     
     var video: Video? {
         didSet {
@@ -20,13 +20,16 @@ class MusicVideoTableViewCell: UITableViewCell {
         }
     }
     
+    func preferredFontChanged() {
+        // rank.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        title.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+    }
+    
     func updateCell() {
+        preferredFontChanged()
         
-        rank.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        title.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-
-        rank.text = String(video!.rank)
-        title.text = video?.title
+//      rank.text = String(video!.rank)
+        title.text = "\(video!.title) at No. \(video!.rank)"
         
         if video?.imageData != nil {
             musicImage.image = UIImage(data: video!.imageData!) // already have image data
@@ -52,5 +55,5 @@ class MusicVideoTableViewCell: UITableViewCell {
             }
         }
     }
-    
+ 
 }

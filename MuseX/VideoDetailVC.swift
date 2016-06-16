@@ -10,26 +10,45 @@ import UIKit
 
 class VideoDetailVC: UIViewController {
 
+    @IBOutlet weak var videoImage: UIImageView!
+    @IBOutlet weak var detailTitleLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var rightsLabel: UILabel!
+    
+    var musicVideo: Video!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+
+        //      title = musicVideo.artist
+        title = "#\(musicVideo.rank) on iTunes"
+        artistLabel.text = musicVideo.artist
+        detailTitleLabel.text = musicVideo.title
+        genreLabel.text = musicVideo.genre
+        priceLabel.text = musicVideo.price
+        rightsLabel.text = musicVideo.rights
+        if musicVideo.imageData != nil {
+            videoImage.image = UIImage(data: musicVideo.imageData!)
+        } else {
+            videoImage.image = UIImage(contentsOfFile: "imageNotAvailable")
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    func preferredFontChanged() {
+        // title.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        artistLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        detailTitleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        genreLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        priceLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        rightsLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
-    */
 
 }

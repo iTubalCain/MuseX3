@@ -10,7 +10,6 @@
 		BE1D5A071D12185C00683675 /* MusicVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */; };
 		BE1D5A091D12573D00683675 /* VideoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D5A081D12573D00683675 /* VideoDetailVC.swift */; };
 		BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */; };
-		BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2211ED1D0FFC640049BA9C /* ViewController.swift */; };
 		BE2211F11D0FFC640049BA9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2211EF1D0FFC640049BA9C /* Main.storyboard */; };
 		BE2211F31D0FFC640049BA9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2211F21D0FFC640049BA9C /* Assets.xcassets */; };
 		BE2211F61D0FFC640049BA9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2211F41D0FFC640049BA9C /* LaunchScreen.storyboard */; };
@@ -18,7 +17,7 @@
 		BE22120C1D0FFC640049BA9C /* MuseXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */; };
 		BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22121D1D100FC20049BA9C /* APIManager.swift */; };
 		BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272E851D11F03500855CE2 /* MusicVideoVC.swift */; };
-		BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* Constants.swift */; };
+		BEDDF9321D10DD1900D6AC89 /* z.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* z.swift */; };
 		BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9331D10DF2100D6AC89 /* Video.swift */; };
 		BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9381D11103000D6AC89 /* Reachability.m */; };
 /* End PBXBuildFile section */
@@ -45,7 +44,6 @@
 		BE1D5A081D12573D00683675 /* VideoDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailVC.swift; sourceTree = "<group>"; };
 		BE2211E81D0FFC640049BA9C /* MuseX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE2211ED1D0FFC640049BA9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE2211F01D0FFC640049BA9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE2211F21D0FFC640049BA9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE2211F51D0FFC640049BA9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +56,7 @@
 		BE22120D1D0FFC640049BA9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE22121D1D100FC20049BA9C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		BE272E851D11F03500855CE2 /* MusicVideoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoVC.swift; sourceTree = "<group>"; };
-		BEDDF9311D10DD1900D6AC89 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BEDDF9311D10DD1900D6AC89 /* z.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = z.swift; sourceTree = "<group>"; };
 		BEDDF9331D10DF2100D6AC89 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		BEDDF9361D11103000D6AC89 /* MuseX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MuseX-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDDF9371D11103000D6AC89 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 				BE22121A1D1003830049BA9C /* Controller */,
 				BE2212191D1003720049BA9C /* Model */,
 				BE22121B1D1003C50049BA9C /* View */,
-				BEDDF9351D110F3300D6AC89 /* Obj-C */,
 				BE22121C1D1003E70049BA9C /* Supporting Files */,
 			);
 			path = MuseX;
@@ -155,7 +152,6 @@
 				BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */,
 				BE272E851D11F03500855CE2 /* MusicVideoVC.swift */,
 				BE1D5A081D12573D00683675 /* VideoDetailVC.swift */,
-				BE2211ED1D0FFC640049BA9C /* ViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -172,9 +168,10 @@
 		BE22121C1D1003E70049BA9C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BEDDF9351D110F3300D6AC89 /* Obj-C */,
 				BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */,
 				BE2211F21D0FFC640049BA9C /* Assets.xcassets */,
-				BEDDF9311D10DD1900D6AC89 /* Constants.swift */,
+				BEDDF9311D10DD1900D6AC89 /* z.swift */,
 				BE2211F71D0FFC640049BA9C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -258,6 +255,7 @@
 				TargetAttributes = {
 					BE2211E71D0FFC640049BA9C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FL83J9BVL9;
 					};
 					BE2211FB1D0FFC640049BA9C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -322,14 +320,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */,
-				BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */,
 				BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */,
 				BE1D5A071D12185C00683675 /* MusicVideoTableViewCell.swift in Sources */,
 				BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */,
 				BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */,
 				BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */,
 				BE1D5A091D12573D00683675 /* VideoDetailVC.swift in Sources */,
-				BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */,
+				BEDDF9321D10DD1900D6AC89 /* z.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,10 +471,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MuseX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xamples.musex.MuseX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MuseX/MuseX-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -488,10 +488,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MuseX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xamples.musex.MuseX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MuseX/MuseX-Bridging-Header.h";
 			};
 			name = Release;
