@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE1D5A071D12185C00683675 /* MusicVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */; };
+		BE1D5A091D12573D00683675 /* VideoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D5A081D12573D00683675 /* VideoDetailVC.swift */; };
 		BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */; };
 		BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2211ED1D0FFC640049BA9C /* ViewController.swift */; };
 		BE2211F11D0FFC640049BA9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2211EF1D0FFC640049BA9C /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTableViewCell.swift; sourceTree = "<group>"; };
+		BE1D5A081D12573D00683675 /* VideoDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailVC.swift; sourceTree = "<group>"; };
 		BE2211E81D0FFC640049BA9C /* MuseX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE2211ED1D0FFC640049BA9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */,
 				BE272E851D11F03500855CE2 /* MusicVideoVC.swift */,
+				BE1D5A081D12573D00683675 /* VideoDetailVC.swift */,
 				BE2211ED1D0FFC640049BA9C /* ViewController.swift */,
 			);
 			name = Controller;
@@ -325,6 +328,7 @@
 				BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */,
 				BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */,
 				BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */,
+				BE1D5A091D12573D00683675 /* VideoDetailVC.swift in Sources */,
 				BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
