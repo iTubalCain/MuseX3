@@ -35,9 +35,9 @@ class MusicVideoVC: UITableViewController {
     
     func didLoadData(videos: [Video]) {
         self.videos = videos
-        for (index, video) in videos.enumerate() {
-            print("\(index + 1): \(video.releaseDate)")
-        }
+//        for (index, video) in videos.enumerate() {
+//            print("\(index + 1): \(video.releaseDate)")
+//        }
         tableView.reloadData()
 //      tableView.estimatedRowHeight = 132
     }

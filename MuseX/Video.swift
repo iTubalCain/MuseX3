@@ -38,6 +38,8 @@ class Video {
     var iTunesURL:  String { return _iTunesURL }
     var releaseDate:String { return _releaseDate }
     
+    var imageData: NSData?  // holds downloaded image
+    
 /// init with JSON Dictionary
     
     init(data: JSONDictionary){

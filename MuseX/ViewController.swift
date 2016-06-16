@@ -21,7 +21,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
         
         reachabilityStatusChanged()
-        
 //      print(reachabilityStatus)
 
         let api = APIManager()
@@ -30,9 +29,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func didLoadData(videos: [Video]) {
         self.videos = videos
-//        for video in videos {
-//            print("Title: \(video.title)")
-//        }
         for (index, video) in videos.enumerate() {
             print("\(index + 1): \(video.releaseDate)")
         }

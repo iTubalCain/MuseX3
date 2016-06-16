@@ -21,9 +21,33 @@ class MusicVideoTableViewCell: UITableViewCell {
     }
     
     func updateCell() {
-        musicImage.image = UIImage (named: "imageNotAvailable")
+        // musicImage.image = UIImage (named: "imageNotAvailable")
         rank.text = String(video!.rank)
         title.text = video?.title
+        
+        if video?.imageData != nil {
+            musicImage.image = UIImage(data: video!.imageData!) // already have image data
+        } else {
+            getVideoImage(video!, imageView: musicImage)
+        }
+        
+    }
+    
+    func getVideoImage(video: Video, imageView: UIImageView) {
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)) {
+            let data = NSData(contentsOfURL: NSURL(string: video.imageURL)!)
+            var image: UIImage?
+            
+            if data != nil {
+                video.imageData = data
+                image = UIImage(data: data!)
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                imageView.image = image
+            }
+        }
     }
     
 }

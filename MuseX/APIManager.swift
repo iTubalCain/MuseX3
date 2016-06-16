@@ -32,14 +32,12 @@ class APIManager {
                             feed = json["feed"] as? JSONDictionary, // root record
                             entries = feed["entry"] as? JSONArray { // n entries
                             
-//                              print(json)
                                 var videos = [Video]()
                                 for (index, entry) in entries.enumerate() {
                                     let entry = Video(data: entry as! JSONDictionary)
                                     entry.rank = index + 1
                                     videos.append(entry)
                                     }
-//                              print("No. Videos: \(videos.count)")
                             
                                 let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                                 dispatch_async(dispatch_get_global_queue(priority, 0)) {
