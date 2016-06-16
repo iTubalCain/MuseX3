@@ -12,6 +12,8 @@ class Video {
     
     let NO_STRING_FOUND = "-none-"
     
+    var rank = 0    // e.g. Top 10
+    
     private var _title:      String
     private var _rights:     String
     private var _price:      String

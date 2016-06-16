@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE1D5A071D12185C00683675 /* MusicVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */; };
 		BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */; };
 		BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2211ED1D0FFC640049BA9C /* ViewController.swift */; };
 		BE2211F11D0FFC640049BA9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2211EF1D0FFC640049BA9C /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTableViewCell.swift; sourceTree = "<group>"; };
 		BE2211E81D0FFC640049BA9C /* MuseX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE2211ED1D0FFC640049BA9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +115,6 @@
 				BE2212191D1003720049BA9C /* Model */,
 				BE22121B1D1003C50049BA9C /* View */,
 				BEDDF9351D110F3300D6AC89 /* Obj-C */,
-				BEDDF9301D10DCEC00D6AC89 /* Utils */,
 				BE22121C1D1003E70049BA9C /* Supporting Files */,
 			);
 			path = MuseX;
@@ -149,6 +150,7 @@
 		BE22121A1D1003830049BA9C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */,
 				BE272E851D11F03500855CE2 /* MusicVideoVC.swift */,
 				BE2211ED1D0FFC640049BA9C /* ViewController.swift */,
 			);
@@ -169,17 +171,10 @@
 			children = (
 				BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */,
 				BE2211F21D0FFC640049BA9C /* Assets.xcassets */,
+				BEDDF9311D10DD1900D6AC89 /* Constants.swift */,
 				BE2211F71D0FFC640049BA9C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BEDDF9301D10DCEC00D6AC89 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				BEDDF9311D10DD1900D6AC89 /* Constants.swift */,
-			);
-			name = Utils;
 			sourceTree = "<group>";
 		};
 		BEDDF9351D110F3300D6AC89 /* Obj-C */ = {
@@ -326,6 +321,7 @@
 				BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */,
 				BE2211EE1D0FFC640049BA9C /* ViewController.swift in Sources */,
 				BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */,
+				BE1D5A071D12185C00683675 /* MusicVideoTableViewCell.swift in Sources */,
 				BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */,
 				BE2211EC1D0FFC640049BA9C /* AppDelegate.swift in Sources */,
 				BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */,

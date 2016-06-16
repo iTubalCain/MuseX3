@@ -10,6 +10,10 @@ import UIKit
 
 class MusicVideoVC: UITableViewController {
 
+    private struct StoryBoard {
+        static let cellReuseIdentifier = "cell"
+    }
+
     var videos = [Video]()
     
     
@@ -31,19 +35,17 @@ class MusicVideoVC: UITableViewController {
     
     func didLoadData(videos: [Video]) {
         self.videos = videos
-        //        for video in videos {
-        //            print("Title: \(video.title)")
-        //        }
         for (index, video) in videos.enumerate() {
             print("\(index + 1): \(video.releaseDate)")
         }
         tableView.reloadData()
+//      tableView.estimatedRowHeight = 132
     }
     
     func reachabilityStatusChanged() {
         switch reachabilityStatus {
         case NO_ACCESS:
-            view.backgroundColor = UIColor.orangeColor()
+            // view.backgroundColor = UIColor.orangeColor()
             // Hack to avoid warning: "Presenting view controllers on detached view controllers is discouraged"
             dispatch_async(dispatch_get_main_queue()) {
             let alert = UIAlertController(title: NO_ACCESS, message: "Check your Internet connection", preferredStyle: .Alert)
@@ -65,15 +67,8 @@ class MusicVideoVC: UITableViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             } // end Hack
             
-////            displayLabel.text = NO_ACCESS
-//        case WIFI:
-//            view.backgroundColor = UIColor.greenColor()
-////            displayLabel.text = WIFI
-//        case WWAN:
-//            view.backgroundColor = UIColor.yellowColor()
-////            displayLabel.text = WWAN
         default:
-            view.backgroundColor = UIColor.greenColor()
+            // view.backgroundColor = UIColor.greenColor()
             if videos.count > 0 {
                 print("Do not refresh API") // data already loaded
             } else {
@@ -99,13 +94,12 @@ class MusicVideoVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cellReuseIdentifier, forIndexPath: indexPath) as! MusicVideoTableViewCell
 
-        // Configure the cell...
-
-        let video = videos[indexPath.row]
-        cell.textLabel?.text = ("\(indexPath.row + 1)")
-        cell.detailTextLabel?.text = video.title
+        cell.video = videos[indexPath.row]
+        
+//        cell.textLabel?.text = ("\(indexPath.row + 1)")
+//        cell.detailTextLabel?.text = video.title
 
         return cell
     }
