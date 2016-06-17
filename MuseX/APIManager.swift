@@ -25,7 +25,9 @@ class APIManager {
                 } else {
 //                  print(data)
                     do {
-                        /* .AllowFragments - top level object is NOT Array or Dictionary. Any type of string ot value. NJSONSerialization requires do-try-catch. It converts the NDData into a JSON obkect and casts it to a Dictionary.
+                        /* .AllowFragments - top level object is NOT Array or Dictionary. Any type 
+                           of string ot value. NJSONSerialization requires do-try-catch. It converts 
+                           the NDData into a JSON obkect and casts it to a Dictionary.
                          */
                         if let json = try NSJSONSerialization.JSONObjectWithData(data!,
                             options: .AllowFragments) as? JSONDictionary,
