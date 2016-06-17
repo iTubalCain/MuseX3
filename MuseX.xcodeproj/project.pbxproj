@@ -19,7 +19,7 @@
 		BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272E851D11F03500855CE2 /* MusicVideoVC.swift */; };
 		BE93187D1D138FDA00802A4E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93187C1D138FDA00802A4E /* SettingsVC.swift */; };
 		BE93187F1D13B47300802A4E /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93187E1D13B47300802A4E /* AboutVC.swift */; };
-		BEDDF9321D10DD1900D6AC89 /* z.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* z.swift */; };
+		BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* Constants.swift */; };
 		BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9331D10DF2100D6AC89 /* Video.swift */; };
 		BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9381D11103000D6AC89 /* Reachability.m */; };
 /* End PBXBuildFile section */
@@ -60,7 +60,7 @@
 		BE272E851D11F03500855CE2 /* MusicVideoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoVC.swift; sourceTree = "<group>"; };
 		BE93187C1D138FDA00802A4E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		BE93187E1D13B47300802A4E /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
-		BEDDF9311D10DD1900D6AC89 /* z.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = z.swift; sourceTree = "<group>"; };
+		BEDDF9311D10DD1900D6AC89 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BEDDF9331D10DF2100D6AC89 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		BEDDF9361D11103000D6AC89 /* MuseX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MuseX-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDDF9371D11103000D6AC89 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				BEDDF9351D110F3300D6AC89 /* Obj-C */,
 				BE2211EB1D0FFC640049BA9C /* AppDelegate.swift */,
 				BE2211F21D0FFC640049BA9C /* Assets.xcassets */,
-				BEDDF9311D10DD1900D6AC89 /* z.swift */,
+				BEDDF9311D10DD1900D6AC89 /* Constants.swift */,
 				BE2211F71D0FFC640049BA9C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -333,7 +333,7 @@
 				BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */,
 				BE93187F1D13B47300802A4E /* AboutVC.swift in Sources */,
 				BE1D5A091D12573D00683675 /* VideoDetailVC.swift in Sources */,
-				BEDDF9321D10DD1900D6AC89 /* z.swift in Sources */,
+				BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */,
 				BE93187D1D138FDA00802A4E /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,11 @@ import UIKit
 
 class MusicVideoVC: UITableViewController {
 
+    @IBAction func refreshControl(sender: UIRefreshControl) {
+        refreshControl?.endRefreshing()
+        runAPI()
+    }
+    
     private struct StoryBoard {
         static let cellReuseIdentifier = "customCell"
         static let segueIdentifier =  "videoDetail"
@@ -17,6 +22,15 @@ class MusicVideoVC: UITableViewController {
 
     var videos = [Video]()
     
+    var maxSongs = 10 // upper limit = 200
+    
+    func getMaxSongs() {
+        maxSongs = Int(NSUserDefaults.standardUserDefaults().floatForKey("Settings: Top x"))
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+        let refreshDate = dateFormatter.stringFromDate(NSDate())
+        refreshControl?.attributedTitle = NSAttributedString(string: String(refreshDate))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +43,6 @@ class MusicVideoVC: UITableViewController {
         
         reachabilityStatusChanged()
         // print(reachabilityStatus)
-        
-        // title = "MuseX: Top Songs" // ADDS TO ALL TITLES!
     }
     
     func preferredFontChanged() {
@@ -38,15 +50,21 @@ class MusicVideoVC: UITableViewController {
     }
     
     func runAPI() {
+        getMaxSongs()
         let api = APIManager()
-        api.loadData(ITUNES_URL, completion: didLoadData)
+        api.loadData("http://itunes.apple.com/us/rss/topmusicvideos/limit=\(maxSongs)/json", completion: didLoadData)
     }
     
     func didLoadData(videos: [Video]) {
         self.videos = videos
+        
 //        for (index, video) in videos.enumerate() {
 //            print("\(index + 1): \(video.releaseDate)")
 //        }
+        
+//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
+//        title = "MuseX: Top \(maxSongs) Songs" // ADDS TO ALL TITLES!
+
         tableView.reloadData()
 //      tableView.estimatedRowHeight = 300
     }
