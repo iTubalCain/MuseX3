@@ -27,6 +27,10 @@ class SettingsVC: UITableViewController {
         NSUserDefaults.standardUserDefaults().setBool((imageQualitySwitch.on ? true : false), forKey: "Settings: Best Image")
     }
     
+    @IBAction func topXSlider(sender: UISlider) {
+        NSUserDefaults.standardUserDefaults().setFloat(topXVideosSlider.value, forKey: "Settings: Top x")
+        topXVideos.text = String(Int(topXVideosSlider.value))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +42,12 @@ class SettingsVC: UITableViewController {
         // set defaults
         securitySwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("Settings: Security")
         imageQualitySwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("Settings: Best Image")
-
+//        if let sliderValue = NSUserDefaults.standardUserDefaults().objectForKey("Settings: Top x") as? Float {
+//            topXVideos.text = String(Int(sliderValue))
+//            topXVideosSlider.value = sliderValue
+//        }
+        topXVideosSlider.value = NSUserDefaults.standardUserDefaults().floatForKey("Settings: Top x")
+        topXVideos.text = String(Int(topXVideosSlider.value))
    }
     
     func preferredFontChanged()  {

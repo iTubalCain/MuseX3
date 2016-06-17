@@ -28,7 +28,9 @@ class MusicVideoVC: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         reachabilityStatusChanged()
-        //      print(reachabilityStatus)
+        // print(reachabilityStatus)
+        
+        // title = "MuseX: Top Songs" // ADDS TO ALL TITLES!
     }
     
     func preferredFontChanged() {

@@ -25,8 +25,8 @@ class VideoDetailVC: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 
         //      title = musicVideo.artist
-        title = musicVideo.title
-        detailTitleLabel.text = "#\(musicVideo.rank) on iTunes"
+        title = "#\(musicVideo.rank) on iTunes"
+        detailTitleLabel.text = musicVideo.title
         artistLabel.text = musicVideo.artist
         genreLabel.text = musicVideo.genre
         priceLabel.text = musicVideo.price
