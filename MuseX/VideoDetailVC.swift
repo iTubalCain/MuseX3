@@ -6,6 +6,8 @@
 //  Copyright © 2016 Will Wagers. All rights reserved.
 //
 
+import AVFoundation
+import AVKit
 import UIKit
 
 class VideoDetailVC: UIViewController {
@@ -16,6 +18,14 @@ class VideoDetailVC: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var rightsLabel: UILabel!
+    
+    @IBAction func playVideo(sender: UIBarButtonItem) {
+        let playerVC = AVPlayerViewController()
+        playerVC.player = AVPlayer(URL: NSURL(string: musicVideo.videoURL)!)
+        self.presentViewController(playerVC, animated: true) {
+            playerVC.player?.play()
+        }
+    }
     
     var musicVideo: Video!
     
