@@ -29,7 +29,7 @@ class MusicVideoTableViewCell: UITableViewCell {
         preferredFontChanged()
         
 //      rank.text = String(video!.rank)
-        title.text = "\(video!.title) at No. \(video!.rank)"
+        title.text = "\(video!.title) @ No. \(video!.rank)"
         
         if video?.imageData != nil {
             musicImage.image = UIImage(data: video!.imageData!) // already have image data
