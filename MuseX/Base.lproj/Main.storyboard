@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="1768" y="293"/>
         </scene>
-        <!--Table View Controller-->
+        <!--SettingsVC-->
         <scene sceneID="o9K-GT-KaU">
             <objects>
-                <tableViewController id="9sG-Ns-iEy" sceneMemberID="viewController">
+                <tableViewController id="9sG-Ns-iEy" customClass="SettingsVC" customModule="MuseX" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Kw-CU-ALF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,7 +199,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="topX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvZ-LY-hsN">
                                                     <rect key="frame" x="8" y="8" width="584" height="95"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -238,6 +238,16 @@
                             <outlet property="delegate" destination="9sG-Ns-iEy" id="LYn-yB-WhP"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="aboutLabel" destination="JQC-J6-Hbx" id="8QO-WC-bzv"/>
+                        <outlet property="feedbackLabel" destination="cur-ak-cmz" id="F6w-x4-Rdp"/>
+                        <outlet property="imageQualityLabel" destination="f1O-UM-8aI" id="f5u-dv-hcz"/>
+                        <outlet property="imageQualitySwitch" destination="tBH-S8-O0i" id="lSL-qj-dvZ"/>
+                        <outlet property="securityLabel" destination="0fG-Qp-IJu" id="2xH-7P-nDN"/>
+                        <outlet property="securitySwitch" destination="cHa-OP-xWx" id="zBj-Eh-WQ2"/>
+                        <outlet property="topXVideos" destination="fvZ-LY-hsN" id="pYX-Pe-3q9"/>
+                        <outlet property="topXVideosSlider" destination="jcM-VR-nrv" id="uQp-65-bzc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9a5-u1-LSN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

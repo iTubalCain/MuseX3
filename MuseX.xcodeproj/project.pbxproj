@@ -17,6 +17,7 @@
 		BE22120C1D0FFC640049BA9C /* MuseXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */; };
 		BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22121D1D100FC20049BA9C /* APIManager.swift */; };
 		BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272E851D11F03500855CE2 /* MusicVideoVC.swift */; };
+		BE93187D1D138FDA00802A4E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93187C1D138FDA00802A4E /* SettingsVC.swift */; };
 		BEDDF9321D10DD1900D6AC89 /* z.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* z.swift */; };
 		BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9331D10DF2100D6AC89 /* Video.swift */; };
 		BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9381D11103000D6AC89 /* Reachability.m */; };
@@ -56,6 +57,7 @@
 		BE22120D1D0FFC640049BA9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE22121D1D100FC20049BA9C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		BE272E851D11F03500855CE2 /* MusicVideoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoVC.swift; sourceTree = "<group>"; };
+		BE93187C1D138FDA00802A4E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		BEDDF9311D10DD1900D6AC89 /* z.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = z.swift; sourceTree = "<group>"; };
 		BEDDF9331D10DF2100D6AC89 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		BEDDF9361D11103000D6AC89 /* MuseX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MuseX-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				BE1D5A061D12185C00683675 /* MusicVideoTableViewCell.swift */,
 				BE272E851D11F03500855CE2 /* MusicVideoVC.swift */,
+				BE93187C1D138FDA00802A4E /* SettingsVC.swift */,
 				BE1D5A081D12573D00683675 /* VideoDetailVC.swift */,
 			);
 			name = Controller;
@@ -327,6 +330,7 @@
 				BEDDF9391D11103000D6AC89 /* Reachability.m in Sources */,
 				BE1D5A091D12573D00683675 /* VideoDetailVC.swift in Sources */,
 				BEDDF9321D10DD1900D6AC89 /* z.swift in Sources */,
+				BE93187D1D138FDA00802A4E /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
