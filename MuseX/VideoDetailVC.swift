@@ -10,7 +10,7 @@ import AVFoundation
 import AVKit
 import UIKit
 
-class VideoDetailVC: UIViewController {
+class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var videoImage: UIImageView!
     @IBOutlet weak var detailTitleLabel: UILabel!
@@ -18,6 +18,37 @@ class VideoDetailVC: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var rightsLabel: UILabel!
+    
+    @IBAction func socialMedia(sender: UIBarButtonItem) {
+        shareMedia(sender)
+    }
+    
+    func shareMedia(sender: UIBarButtonItem) {
+        let messageArray = ["Have you seen this music video called ",
+                          "\(musicVideo.title) by \(musicVideo.artist) yet?",
+                          musicVideo.videoURL, "You can watch it and tell me what you think of it."]
+        
+        let activityVC = UIActivityViewController(activityItems: messageArray, applicationActivities: nil)
+        activityVC.title = "Share with friends"
+        activityVC.excludedActivityTypes = [UIActivityTypePostToFlickr]  // exclude whatever
+        
+        activityVC.completionWithItemsHandler = {
+            (activity, items, success, error) in
+            if activity == UIActivityTypeMail {
+                print("email selected")
+            } else {
+                print("Popped over!")
+            }
+        }
+
+// http://www.howtobuildsoftware.com/index.php/how-do/Qfc/ios-ipad-swift-uipopovercontroller-uiactivityviewcontroller-uiactivity-activityviewcontroller-crash-on-ipad-in-swift
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+            activityVC.popoverPresentationController?.sourceView = self.view
+            activityVC.popoverPresentationController?.barButtonItem = sender
+        }
+        
+        self.presentViewController(activityVC, animated: true, completion: nil)
+    }
     
     @IBAction func playVideo(sender: UIBarButtonItem) {
         let playerVC = AVPlayerViewController()

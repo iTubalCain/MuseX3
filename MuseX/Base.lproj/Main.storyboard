@@ -92,12 +92,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qy-tN-SGp">
-                                <rect key="frame" x="207" y="220" width="200" height="200"/>
+                                <rect key="frame" x="187" y="241" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="31B-QV-drQ"/>
-                                    <constraint firstAttribute="width" constant="200" id="m5x-vP-vzb"/>
+                                    <constraint firstAttribute="height" constant="200" id="Cu9-VD-RVL"/>
+                                    <constraint firstAttribute="width" constant="200" id="dqx-ja-Njw"/>
                                 </constraints>
-                                <string key="text">The MuseX app was written by Will Wagers @2016. The app is based on the one presented in Michael Rodwsky's iOS9 and Swift course.</string>
+                                <string key="text">The MuseX app was written by Will Wagers © 2016. The app is based on the one presented in Michael Rodwsky's iOS 9 and Swift course.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -105,8 +105,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2qy-tN-SGp" firstAttribute="centerX" secondItem="Qvy-uO-ltZ" secondAttribute="centerX" id="D16-Tf-SaZ"/>
-                            <constraint firstItem="2qy-tN-SGp" firstAttribute="centerY" secondItem="Qvy-uO-ltZ" secondAttribute="centerY" id="RJF-zG-srw"/>
+                            <constraint firstItem="2qy-tN-SGp" firstAttribute="centerX" secondItem="Qvy-uO-ltZ" secondAttribute="centerX" id="C3E-oW-O82"/>
+                            <constraint firstItem="2qy-tN-SGp" firstAttribute="centerY" secondItem="Qvy-uO-ltZ" secondAttribute="centerY" id="R6P-RT-aHN"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -463,6 +463,9 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="MbZ-UO-gph"/>
                         <barButtonItem title="Item" systemItem="action" id="TJg-7H-kTq">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="socialMedia:" destination="4fL-7y-C1k" id="cDm-Cv-x28"/>
+                            </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <connections>

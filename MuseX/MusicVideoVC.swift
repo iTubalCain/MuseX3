@@ -26,6 +26,10 @@ class MusicVideoVC: UITableViewController {
     
     func getMaxSongs() {
         maxSongs = Int(NSUserDefaults.standardUserDefaults().floatForKey("Settings: Top x"))
+        if maxSongs < 1 {
+            maxSongs = MAX_SONGS
+            NSUserDefaults.standardUserDefaults().setFloat(Float(maxSongs), forKey: "Settings: Top x")
+        }
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
         let refreshDate = dateFormatter.stringFromDate(NSDate())
@@ -52,7 +56,7 @@ class MusicVideoVC: UITableViewController {
     func runAPI() {
         getMaxSongs()
         let api = APIManager()
-        api.loadData("http://itunes.apple.com/us/rss/topmusicvideos/limit=\(maxSongs)/json", completion: didLoadData)
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(maxSongs)/json", completion: didLoadData)
     }
     
     func didLoadData(videos: [Video]) {

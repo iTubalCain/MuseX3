@@ -6,6 +6,8 @@
 //  Copyright © 2016 Will Wagers. All rights reserved.
 //
 
+// TODO: fix iPad format and landscape view size classes
+
 import UIKit
 
 class SettingsVC: UITableViewController {
