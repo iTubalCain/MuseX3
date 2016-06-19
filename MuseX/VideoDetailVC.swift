@@ -21,27 +21,27 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBAction func socialMedia(sender: UIBarButtonItem) {
         shareMedia(sender)
+        
     }
     
     func shareMedia(sender: UIBarButtonItem) {
-        let messageArray = ["Have you seen this music video called ",
-                          "\(musicVideo.title) by \(musicVideo.artist) yet?",
-                          musicVideo.videoURL, "You can watch it and tell me what you think of it."]
+        let messageArray = ["Have you seen this music video called \"\(musicVideo.title)\" by \(musicVideo.artist) yet? You can watch it and tell me what you think of it.\n",
+                          musicVideo.videoURL]
         
         let activityVC = UIActivityViewController(activityItems: messageArray, applicationActivities: nil)
         activityVC.title = "Share with friends"
         activityVC.excludedActivityTypes = [UIActivityTypePostToFlickr]  // exclude whatever
         
-        activityVC.completionWithItemsHandler = {
+        activityVC.completionWithItemsHandler = { // post processing
             (activity, items, success, error) in
-            if activity == UIActivityTypeMail {
+            if activity == UIActivityTypeMail { // can't email on simulator
                 print("email selected")
             } else {
                 print("Popped over!")
             }
         }
 
-// http://www.howtobuildsoftware.com/index.php/how-do/Qfc/ios-ipad-swift-uipopovercontroller-uiactivityviewcontroller-uiactivity-activityviewcontroller-crash-on-ipad-in-swift
+        // iPad requires popover as container
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
             activityVC.popoverPresentationController?.sourceView = self.view
             activityVC.popoverPresentationController?.barButtonItem = sender

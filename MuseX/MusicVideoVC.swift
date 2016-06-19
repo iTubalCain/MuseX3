@@ -47,6 +47,8 @@ class MusicVideoVC: UITableViewController {
         
         reachabilityStatusChanged()
         // print(reachabilityStatus)
+        
+        // TODO: Fix title prepend prob
     }
     
     func preferredFontChanged() {
