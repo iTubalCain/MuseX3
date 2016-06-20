@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MusicVideoVC: UITableViewController {
+class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
 
     @IBAction func refreshControl(sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
@@ -21,11 +21,6 @@ class MusicVideoVC: UITableViewController {
     }
 
     var videos = [Video]()
-    
-    var filterSearch = [Video]()
-    
-    let resultSearchController = UISearchController(searchResultsController: nil)
-    // nil means display search results in same view
     
     var maxSongs = 10 // upper limit = 200
     
@@ -77,14 +72,14 @@ class MusicVideoVC: UITableViewController {
 //        title = "MuseX: Top \(maxSongs) Songs" // ADDS TO ALL TITLES!
 
         // set up search controller
-        // resultSearchController.searchResultsUpdater = self
         
         definesPresentationContext = true
-        resultSearchController.dimsBackgroundDuringPresentation = true
-        resultSearchController.searchBar.placeholder = "Search for Artist"
-        // resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+        searchResultsController.dimsBackgroundDuringPresentation = false
+        searchResultsController.searchBar.placeholder = "Search for Artist"
+        searchResultsController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+        searchResultsController.searchResultsUpdater = self     // delegate
         
-        tableView.tableHeaderView = resultSearchController.searchBar
+        tableView.tableHeaderView = searchResultsController.searchBar
         
         tableView.reloadData()  // refresh tableView
     }
@@ -124,11 +119,6 @@ class MusicVideoVC: UITableViewController {
         }
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -138,8 +128,8 @@ class MusicVideoVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if resultSearchController.active { // in searchBar
-            return filterSearch.count
+        if searchResultsController.active { // in searchBar
+            return searchResults.count
         }
         return videos.count
     }
@@ -147,8 +137,8 @@ class MusicVideoVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cellReuseIdentifier, forIndexPath: indexPath) as! MusicVideoTableViewCell
 
-        if resultSearchController.active { // in searchBar
-            cell.video = filterSearch[indexPath.row]
+        if searchResultsController.active {         // in searchBar
+            cell.video = searchResults[indexPath.row]
         } else {
             cell.video = videos[indexPath.row]
         }
@@ -161,16 +151,42 @@ class MusicVideoVC: UITableViewController {
         if segue.identifier == StoryBoard.segueIdentifier {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let musicVideo: Video
-                if resultSearchController.active { // in searchBar
-                    musicVideo = filterSearch[indexPath.row]
+                if searchResultsController.active { // in searchBar
+                    musicVideo = searchResults[indexPath.row]
                 } else {
                     musicVideo = videos[indexPath.row]
                 }
                 let destinationVC = segue.destinationViewController as! VideoDetailVC
                 destinationVC.musicVideo = musicVideo
             }
-            
         }
     }
+    
+    // MARK: -
+    
+    var searchResults = [Video]()
+    
+    let searchResultsController = UISearchController(searchResultsController: nil)
+    // nil means display search results in same view
+    
+    // UISearchResultsUpdating protocol method
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        searchController.searchBar.text!.lowercaseString
+        searchFiltered(searchController.searchBar.text!)
+    }
+    
+    func searchFiltered(searchText: String) {
+        searchResults = videos.filter { video in
+            return video.artist.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        tableView.reloadData()
+    }
 
+    // MARK: - Clean up
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
+    }
+    
 }
