@@ -177,7 +177,10 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
     
     func searchFiltered(searchText: String) {
         searchResults = videos.filter { video in
-            return video.artist.lowercaseString.containsString(searchText.lowercaseString)
+//            return video.artist.lowercaseString.containsString(searchText.lowercaseString)
+            return video.artist.lowercaseString.containsString(searchText.lowercaseString) ||
+                String(video.rank).lowercaseString.containsString(searchText.lowercaseString) ||
+                video.title.lowercaseString.containsString(searchText.lowercaseString)
         }
         tableView.reloadData()
     }
@@ -189,4 +192,15 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
     
-}
+} // end MusicVideoVC
+
+//extension MusicVideoVC: UISearchResultsUpdating {
+//    // extension version of UISearchResultsUpdating protocol method
+//    // can be put in its own file, import UIKit
+//    // Comment out the updateSearchResultsForSearchController method above
+//    // and the protocol in the class delaration
+//    func updateSearchResultsForSearchController(searchController: UISearchController) {
+//        searchController.searchBar.text!.lowercaseString
+//        searchFiltered(searchController.searchBar.text!)
+//    }
+//}
