@@ -10,7 +10,7 @@
 // TODO: font size changes failing
 
 import MessageUI
- import UIKit
+import UIKit
 
 class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
