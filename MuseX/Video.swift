@@ -64,6 +64,8 @@ class Video {
         } else {
             _price = NO_STRING_FOUND
         }
+ 
+        // TODO: use 300x300 if low quality or cellular
         
         if let imImage = data["im:image"] as? JSONArray,
             image = imImage[2] as? JSONDictionary,

@@ -47,9 +47,7 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
         
         reachabilityStatusChanged()
         // print(reachabilityStatus)
-        
-        // TODO: Fix title prepend prob title=...
-    }
+        }
     
     func preferredFontChanged() {
         
@@ -69,12 +67,15 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
 //        }
         
 //        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
-//        title = "MuseX: Top \(maxSongs) Songs" // ADDS TO ALL TITLES!
+        title = "MuseX" // NavVC ADDS TO ALL TITLES!
 
         // set up search controller
         
         definesPresentationContext = true
         searchResultsController.dimsBackgroundDuringPresentation = false
+        searchResultsController.hidesNavigationBarDuringPresentation = true
+        searchResultsController.searchBar.barTintColor = UIColor.blackColor()
+        
         searchResultsController.searchBar.placeholder = "Search for Artist"
         searchResultsController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
         searchResultsController.searchResultsUpdater = self     // delegate
@@ -162,7 +163,7 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-    // MARK: -
+    // MARK: - Search
     
     var searchResults = [Video]()
     
