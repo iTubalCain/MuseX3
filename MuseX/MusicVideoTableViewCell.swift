@@ -11,8 +11,7 @@ import UIKit
 class MusicVideoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var musicImage: UIImageView!
-    @IBOutlet weak var title: UILabel!
-    
+    @IBOutlet weak var songTitle: UILabel!
     
     var video: Video? {
         didSet {
@@ -22,14 +21,14 @@ class MusicVideoTableViewCell: UITableViewCell {
     
     func preferredFontChanged() {
         // rank.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        title.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        songTitle.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
     }
     
     func updateCell() {
         preferredFontChanged()
         
 //      rank.text = String(video!.rank)
-        title.text = "\(video!.title) @ No. \(video!.rank)"
+        songTitle.text = "\(video!.title) @ No. \(video!.rank)"
         
         if video?.imageData != nil {
             musicImage.image = UIImage(data: video!.imageData!) // already have image data

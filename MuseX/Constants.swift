@@ -10,9 +10,9 @@ import Foundation
 
 // Constants
 
-let NO_ACCESS = "No Internet access available"
-let WIFI = "WiFi access available"
-let WWAN = "Cellular access available"
+let NO_ACCESS   = "No Internet access available"
+let WIFI        = "WiFi access available"
+let WWAN        = "Cellular access available"
 
 let MAX_SONGS = 10
 

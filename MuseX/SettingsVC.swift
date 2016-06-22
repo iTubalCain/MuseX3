@@ -16,17 +16,11 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var feedbackLabel: UILabel!
-    @IBOutlet weak var securityLabel: UILabel!
-    @IBOutlet weak var securitySwitch: UISwitch!
     @IBOutlet weak var imageQualityLabel: UILabel!
     @IBOutlet weak var imageQualitySwitch: UISwitch!
     @IBOutlet weak var topXVideos: UILabel!
     @IBOutlet weak var topXVideosSlider: UISlider!
-    
-    @IBAction func touchIDSwitch(sender: UISwitch) {
-        NSUserDefaults.standardUserDefaults().setBool((securitySwitch.on ? true : false), forKey: "Settings: Security")
-    }
-    
+        
     @IBAction func bestImageQualitySwitch(sender: UISwitch) {
         NSUserDefaults.standardUserDefaults().setBool((imageQualitySwitch.on ? true : false), forKey: "Settings: Best Image")
     }
@@ -44,7 +38,6 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         // set defaults
-        securitySwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("Settings: Security")
         imageQualitySwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("Settings: Best Image")
 //        if let sliderValue = NSUserDefaults.standardUserDefaults().objectForKey("Settings: Top x") as? Float {
 //            topXVideos.text = String(Int(sliderValue))
@@ -57,7 +50,6 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
     func preferredFontChanged()  {
         aboutLabel.font     = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         feedbackLabel.font  = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        securityLabel.font  = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         imageQualityLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         topXVideos.font     = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
     }
@@ -69,9 +61,9 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
             let mailComposeVC = configureMail()
             if MFMailComposeViewController.canSendMail() {
                 self.presentViewController(mailComposeVC, animated: true, completion: nil)
-            }
-        } else {
+            } else {
             mailAlert() // no email acct set up on device
+            }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

@@ -12,7 +12,11 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
 
     @IBAction func refreshControl(sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
-        runAPI()
+        if searchResultsController.active {
+            refreshControl?.attributedTitle = NSAttributedString(string: "Refresh not available while searching")
+        } else {
+            runAPI()
+        }
     }
     
     private struct StoryBoard {
