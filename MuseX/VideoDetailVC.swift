@@ -21,7 +21,7 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var rightsLabel: UILabel!
     
     @IBAction func socialMedia(sender: UIBarButtonItem) {
-        let messageArray = ["Have you seen this music video called \"\(musicVideo.title)\" by \(musicVideo.artist) yet? You can watch it and tell me what you think of it.\n",
+        let messageArray = ["Have you seen this music video called \"\(musicVideo.songTitle)\" by \(musicVideo.artist) yet? You can watch it and tell me what you think of it.\n",
                           musicVideo.videoURL]
         
         let activityVC = UIActivityViewController(activityItems: messageArray, applicationActivities: nil)
@@ -70,7 +70,7 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
         //      title = musicVideo.artist
         title = "#\(musicVideo.rank) on iTunes"
-        detailTitleLabel.text = "\"\(musicVideo.title)\""
+        detailTitleLabel.text = "\"\(musicVideo.songTitle)\""
         artistLabel.text = musicVideo.artist
         genreLabel.text = musicVideo.genre
         priceLabel.text = musicVideo.price

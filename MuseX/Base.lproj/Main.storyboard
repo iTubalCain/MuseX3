@@ -61,6 +61,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem systemItem="search" id="9rl-Tz-CNm">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchPressed:" destination="DSO-3F-kxw" id="Z2A-TE-dA4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="o78-bY-TWq"/>
                         <barButtonItem title="Settings" id="jRP-Cc-Heh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -126,7 +133,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Kw-CU-ALF">
                         <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="NVA-uH-4n5">
                                 <cells>
@@ -212,28 +219,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best image quality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1O-UM-8aI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="image quality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1O-UM-8aI">
                                                     <rect key="frame" x="8" y="22" width="255" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="255" id="lzM-Gm-B7U"/>
+                                                        <constraint firstAttribute="width" constant="255" id="uqV-UQ-RsA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tBH-S8-O0i">
-                                                    <rect key="frame" x="543" y="26" width="51" height="31"/>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q79-iN-P2z">
+                                                    <rect key="frame" x="429" y="28" width="163" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="163" id="ZZb-Jc-PZa"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Low"/>
+                                                        <segment title="Medium"/>
+                                                        <segment title="High"/>
+                                                    </segments>
                                                     <connections>
-                                                        <action selector="bestImageQualitySwitch:" destination="9sG-Ns-iEy" eventType="valueChanged" id="S2M-qF-OgP"/>
+                                                        <action selector="imageQualitySegmentedControl:" destination="9sG-Ns-iEy" eventType="valueChanged" id="CXE-HD-ffu"/>
                                                     </connections>
-                                                </switch>
+                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="centerY" secondItem="0xW-MD-uTV" secondAttribute="centerY" id="Gk1-4B-Z5g"/>
-                                                <constraint firstItem="tBH-S8-O0i" firstAttribute="trailing" secondItem="0xW-MD-uTV" secondAttribute="trailingMargin" id="KyD-kX-AQJ"/>
-                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="top" secondItem="0xW-MD-uTV" secondAttribute="topMargin" constant="14" id="Nh8-cs-1c6"/>
-                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="centerY" secondItem="tBH-S8-O0i" secondAttribute="centerY" id="qh8-kH-ePr"/>
-                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="leading" secondItem="0xW-MD-uTV" secondAttribute="leadingMargin" id="r3W-CB-dlo"/>
+                                                <constraint firstItem="q79-iN-P2z" firstAttribute="trailing" secondItem="0xW-MD-uTV" secondAttribute="trailingMargin" id="8hV-KS-xxG"/>
+                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="centerY" secondItem="0xW-MD-uTV" secondAttribute="centerY" id="L0C-fW-vDk"/>
+                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="leading" secondItem="0xW-MD-uTV" secondAttribute="leadingMargin" id="Qds-7E-tFC"/>
+                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="centerY" secondItem="q79-iN-P2z" secondAttribute="centerY" id="hpC-81-Cb7"/>
+                                                <constraint firstItem="f1O-UM-8aI" firstAttribute="top" secondItem="0xW-MD-uTV" secondAttribute="topMargin" constant="14" id="iIk-fP-dFm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -310,7 +325,7 @@
                         <outlet property="aboutLabel" destination="JQC-J6-Hbx" id="fyO-ha-G5C"/>
                         <outlet property="feedbackLabel" destination="cur-ak-cmz" id="F6w-x4-Rdp"/>
                         <outlet property="imageQualityLabel" destination="f1O-UM-8aI" id="f5u-dv-hcz"/>
-                        <outlet property="imageQualitySwitch" destination="tBH-S8-O0i" id="lSL-qj-dvZ"/>
+                        <outlet property="imageQualityOutlet" destination="q79-iN-P2z" id="7d4-f6-Bqe"/>
                         <outlet property="topXVideos" destination="fvZ-LY-hsN" id="pYX-Pe-3q9"/>
                         <outlet property="topXVideosSlider" destination="jcM-VR-nrv" id="uQp-65-bzc"/>
                     </connections>
@@ -479,7 +494,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
@@ -494,7 +509,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JB8-dy-rWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="293"/>
+            <point key="canvasLocation" x="1101" y="293"/>
         </scene>
     </scenes>
 </document>

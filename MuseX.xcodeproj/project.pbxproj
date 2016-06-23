@@ -65,6 +65,7 @@
 		BEDDF9361D11103000D6AC89 /* MuseX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MuseX-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDDF9371D11103000D6AC89 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		BEDDF9381D11103000D6AC89 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		BEE830501D1A2C8A00585E5E /* APP NOTES TO DO */ = {isa = PBXFileReference; lastKnownFileType = text; name = "APP NOTES TO DO"; path = "MuseX/APP NOTES TO DO"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 		BE2211DF1D0FFC640049BA9C = {
 			isa = PBXGroup;
 			children = (
+				BEE830501D1A2C8A00585E5E /* APP NOTES TO DO */,
 				BE2211EA1D0FFC640049BA9C /* MuseX */,
 				BE2211FF1D0FFC640049BA9C /* MuseXTests */,
 				BE22120A1D0FFC640049BA9C /* MuseXUITests */,

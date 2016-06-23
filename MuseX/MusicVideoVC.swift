@@ -8,8 +8,12 @@
 
 import UIKit
 
-class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
+class MusicVideoVC: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
 
+    @IBAction func searchPressed(sender: UIBarButtonItem) {
+        tableView.tableHeaderView = searchResultsController.searchBar
+    }
+    
     @IBAction func refreshControl(sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
         if searchResultsController.active {
@@ -51,7 +55,7 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
         
         reachabilityStatusChanged()
         // print(reachabilityStatus)
-        }
+            }
     
     func preferredFontChanged() {
         
@@ -59,7 +63,7 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
     
     func runAPI() {
         getMaxSongs()
-        let api = APIManager()
+        let api = DownloadManager()
         api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(maxSongs)/json", completion: didLoadData)
     }
     
@@ -70,8 +74,7 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
 //            print("\(index + 1): \(video.releaseDate)")
 //        }
         
-//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
-        title = "MuseX" // NavVC ADDS TO ALL TITLES!
+        title = "MuseX" // NavVC title appears on all nav pages as back link
 
         // set up search controller
         
@@ -79,13 +82,13 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
         searchResultsController.dimsBackgroundDuringPresentation = false
         searchResultsController.hidesNavigationBarDuringPresentation = true
         searchResultsController.searchBar.barTintColor = UIColor.blackColor()
-        
-        searchResultsController.searchBar.placeholder = "Search for Artist"
-        searchResultsController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+        searchResultsController.searchBar.placeholder = "Search"
+//        searchResultsController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+        searchResultsController.searchBar.tintColor = UIColor.whiteColor()
+        searchResultsController.searchBar.scopeButtonTitles = ["All", "Artist", "Genre", "Song"]
+        searchResultsController.searchBar.delegate = self
         searchResultsController.searchResultsUpdater = self     // delegate
-        
-        tableView.tableHeaderView = searchResultsController.searchBar
-        
+       
         tableView.reloadData()  // refresh tableView
     }
     
@@ -115,7 +118,6 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
             } // end Hack
             
         default:
-            // view.backgroundColor = UIColor.greenColor()
             if videos.count > 0 {
                 print("Do not refresh API") // data already loaded
             } else {
@@ -176,20 +178,33 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
     
     // UISearchResultsUpdating protocol method
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        searchController.searchBar.text!.lowercaseString
-        searchFiltered(searchController.searchBar.text!)
+        searchResultsController.searchBar.text!.lowercaseString
+        let scope =  searchResultsController.searchBar.scopeButtonTitles![searchResultsController.searchBar.selectedScopeButtonIndex]
+        searchFiltered(searchResultsController.searchBar.text!, scope: scope)
     }
     
-    func searchFiltered(searchText: String) {
+    func searchFiltered(searchText: String, scope: String = "All") {
         searchResults = videos.filter { video in
-//            return video.artist.lowercaseString.containsString(searchText.lowercaseString)
-            return video.artist.lowercaseString.containsString(searchText.lowercaseString) ||
-                String(video.rank).lowercaseString.containsString(searchText.lowercaseString) ||
-                video.title.lowercaseString.containsString(searchText.lowercaseString)
+            switch scope {
+                case "All":
+                    return searchText == "" || video.artist.lowercaseString.containsString(searchText.lowercaseString) || video.genre.lowercaseString.containsString(searchText.lowercaseString) || video.songTitle.lowercaseString.containsString(searchText.lowercaseString)
+                case "Artist":
+                    return searchText == "" || video.artist.lowercaseString.containsString(searchText.lowercaseString)
+                case "Genre":
+                    return searchText == "" || video.genre.lowercaseString.containsString(searchText.lowercaseString)
+                case "Song":
+                    return searchText == "" || video.songTitle.lowercaseString.containsString(searchText.lowercaseString)
+                default:
+                    return searchText == ""
+            }
         }
         tableView.reloadData()
     }
 
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        searchFiltered(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+    
     // MARK: - Clean up
 
     deinit {
@@ -198,14 +213,3 @@ class MusicVideoVC: UITableViewController, UISearchResultsUpdating {
     }
     
 } // end MusicVideoVC
-
-//extension MusicVideoVC: UISearchResultsUpdating {
-//    // extension version of UISearchResultsUpdating protocol method
-//    // can be put in its own file, import UIKit
-//    // Comment out the updateSearchResultsForSearchController method above
-//    // and the protocol in the class delaration
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        searchController.searchBar.text!.lowercaseString
-//        searchFiltered(searchController.searchBar.text!)
-//    }
-//}

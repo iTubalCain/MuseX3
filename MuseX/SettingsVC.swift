@@ -17,13 +17,19 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var imageQualityLabel: UILabel!
-    @IBOutlet weak var imageQualitySwitch: UISwitch!
+    
+    @IBOutlet weak var imageQualityOutlet: UISegmentedControl!
+    @IBAction func imageQualitySegmentedControl(sender: UISegmentedControl) {
+        NSUserDefaults.standardUserDefaults().setInteger(imageQualityOutlet.selectedSegmentIndex, forKey: "Settings: Image Quality")
+        print("\(imageQualityOutlet.selectedSegmentIndex)")
+    }
+
     @IBOutlet weak var topXVideos: UILabel!
     @IBOutlet weak var topXVideosSlider: UISlider!
-        
-    @IBAction func bestImageQualitySwitch(sender: UISwitch) {
-        NSUserDefaults.standardUserDefaults().setBool((imageQualitySwitch.on ? true : false), forKey: "Settings: Best Image")
-    }
+    
+//    @IBAction func bestImageQualitySwitch(sender: UISwitch) {
+//        NSUserDefaults.standardUserDefaults().setBool((imageQualitySwitch.on ? true : false), forKey: "Settings: Best Image")
+//    }
     
     @IBAction func topXSlider(sender: UISlider) {
         NSUserDefaults.standardUserDefaults().setFloat(topXVideosSlider.value, forKey: "Settings: Top x")
@@ -38,7 +44,7 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         // set defaults
-        imageQualitySwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("Settings: Best Image")
+        imageQualityOutlet.selectedSegmentIndex = NSUserDefaults.standardUserDefaults().integerForKey("Settings: Image Quality")
 //        if let sliderValue = NSUserDefaults.standardUserDefaults().objectForKey("Settings: Top x") as? Float {
 //            topXVideos.text = String(Int(sliderValue))
 //            topXVideosSlider.value = sliderValue

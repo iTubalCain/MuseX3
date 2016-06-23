@@ -10,6 +10,15 @@ import Foundation
 
 // Constants
 
+let NO_STRING_FOUND = "-none-"
+
+// imageURLS array indices
+let LOW_QUALITY     = "LOW_QUALITY"
+let MEDIUM_QUALITY  = "MEDIUM_QUALITY"
+let HIGH_QUALITY    = "HIGH_QUALITY"
+
+
+// Reachability
 let NO_ACCESS   = "No Internet access available"
 let WIFI        = "WiFi access available"
 let WWAN        = "Cellular access available"

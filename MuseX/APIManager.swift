@@ -1,5 +1,5 @@
 //
-//  APIManager.swift
+//  DownloadManager.swift
 //  MuseX
 //
 //  Created by Will on 6/14/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class APIManager {
+class DownloadManager {
     
     func loadData(urlString: String, completion: [Video] -> Void) {
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -25,7 +25,7 @@ class APIManager {
                 } else {
 //                  print(data)
                     do {
-                        /* .AllowFragments - top level object is NOT Array or Dictionary. Any type 
+                    /* .AllowFragments - top level object is NOT Array or Dictionary. Any type 
                            of string ot value. NJSONSerialization requires do-try-catch. It converts 
                            the NDData into a JSON obkect and casts it to a Dictionary.
                          */
@@ -36,15 +36,14 @@ class APIManager {
                             
                                 var videos = [Video]()
                                 for (index, entry) in entries.enumerate() {
-                                    let entry = Video(data: entry as! JSONDictionary)
-                                    entry.rank = index + 1
+                                    let entry = Video(rank: index + 1, data: entry as! JSONDictionary)
                                     videos.append(entry)
                                     }
                             
                                 let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                                 dispatch_async(dispatch_get_global_queue(priority, 0)) {
                                     dispatch_async(dispatch_get_main_queue()) {
-                                    completion(videos) // pass back videos array
+                                        completion(videos) // pass back videos array
                                     }
                                 }
                             }
