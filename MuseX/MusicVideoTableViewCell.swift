@@ -23,6 +23,7 @@ class MusicVideoTableViewCell: UITableViewCell {
         preferredFontChanged()
         songTitle.text = "\(video!.songTitle) @ No. \(video!.rank)"
         
+        // TODO: check .image available
         if video?.imageData != nil {
             musicImage.image = UIImage(data: video!.imageData!) // already have image data
             video?.image = musicImage.image
@@ -34,6 +35,8 @@ class MusicVideoTableViewCell: UITableViewCell {
     private func preferredFontChanged() {
         songTitle.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
     }
+    
+//TODO: Part of model!!!
     
     private func queueVideoImageFetch(video: Video, imageView: UIImageView) {
         // TODO: check imageQuality, save image
@@ -49,7 +52,7 @@ class MusicVideoTableViewCell: UITableViewCell {
             
             dispatch_async(dispatch_get_main_queue()) {
                 imageView.image = image
-                
+                video.image = image
             }
         }
     }

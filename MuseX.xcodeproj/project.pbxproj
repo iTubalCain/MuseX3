@@ -15,8 +15,8 @@
 		BE2211F61D0FFC640049BA9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2211F41D0FFC640049BA9C /* LaunchScreen.storyboard */; };
 		BE2212011D0FFC640049BA9C /* MuseXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2212001D0FFC640049BA9C /* MuseXTests.swift */; };
 		BE22120C1D0FFC640049BA9C /* MuseXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */; };
-		BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22121D1D100FC20049BA9C /* APIManager.swift */; };
 		BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE272E851D11F03500855CE2 /* MusicVideoVC.swift */; };
+		BE58FEBA1D1BEC0100912B0D /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58FEB91D1BEC0100912B0D /* DownloadManager.swift */; };
 		BE93187D1D138FDA00802A4E /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93187C1D138FDA00802A4E /* SettingsVC.swift */; };
 		BE93187F1D13B47300802A4E /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE93187E1D13B47300802A4E /* AboutVC.swift */; };
 		BEDDF9321D10DD1900D6AC89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDDF9311D10DD1900D6AC89 /* Constants.swift */; };
@@ -56,8 +56,8 @@
 		BE2212071D0FFC640049BA9C /* MuseXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE22120B1D0FFC640049BA9C /* MuseXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseXUITests.swift; sourceTree = "<group>"; };
 		BE22120D1D0FFC640049BA9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE22121D1D100FC20049BA9C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		BE272E851D11F03500855CE2 /* MusicVideoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoVC.swift; sourceTree = "<group>"; };
+		BE58FEB91D1BEC0100912B0D /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		BE93187C1D138FDA00802A4E /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		BE93187E1D13B47300802A4E /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		BEDDF9311D10DD1900D6AC89 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		BE2212191D1003720049BA9C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BE22121D1D100FC20049BA9C /* APIManager.swift */,
+				BE58FEB91D1BEC0100912B0D /* DownloadManager.swift */,
 				BEDDF9331D10DF2100D6AC89 /* Video.swift */,
 			);
 			name = Model;
@@ -327,7 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE22121E1D100FC20049BA9C /* APIManager.swift in Sources */,
+				BE58FEBA1D1BEC0100912B0D /* DownloadManager.swift in Sources */,
 				BE272E861D11F03500855CE2 /* MusicVideoVC.swift in Sources */,
 				BE1D5A071D12185C00683675 /* MusicVideoTableViewCell.swift in Sources */,
 				BEDDF9341D10DF2100D6AC89 /* Video.swift in Sources */,

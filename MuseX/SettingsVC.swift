@@ -60,8 +60,6 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
         topXVideos.font     = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
     }
     
-// TODO: Test Feedback Mail functions
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == 1 { // Feedback row
             let mailComposeVC = configureMail()
@@ -73,6 +71,9 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    // TODO: Test Feedback Mail functions, part of Model??????
+    // MARK: - EMail
     
     func configureMail() -> MFMailComposeViewController {
         let mailComposeVC = MFMailComposeViewController()
