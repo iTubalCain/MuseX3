@@ -10,13 +10,13 @@ import Foundation
 
 class DownloadManager {
     
-    func loadData(urlString: String, completion: [Video] -> Void) {
-        let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+    func loadData(_ urlString: String, completion: @escaping ([Video]) -> Void) {
+        let config = URLSessionConfiguration.ephemeral
 //      let session = NSURLSession.sharedSession()
-        let session = NSURLSession(configuration: config)
-        let url = NSURL(string: urlString)!
+        let session = URLSession(configuration: config)
+        let url = URL(string: urlString)!
         
-        let task = session.dataTaskWithURL(url) {
+        let task = session.dataTask(with: url, completionHandler: {
         
             (data, response, error) -> Void in
 
@@ -29,20 +29,22 @@ class DownloadManager {
                            of string ot value. NJSONSerialization requires do-try-catch. It converts 
                            the NDData into a JSON obkect and casts it to a Dictionary.
                          */
-                        if let json = try NSJSONSerialization.JSONObjectWithData(data!,
-                            options: .AllowFragments) as? JSONDictionary,
-                            feed = json["feed"] as? JSONDictionary, // root record
-                            entries = feed["entry"] as? JSONArray { // n entries
+                        if let json = try JSONSerialization.jsonObject(with: data!,
+                            options: .allowFragments) as? JSONDictionary,
+                            let feed = json["feed"] as? JSONDictionary, // root record
+                            let entries = feed["entry"] as? JSONArray { // n entries
                             
                                 var videos = [Video]()
-                                for (index, entry) in entries.enumerate() {
+                                for (index, entry) in entries.enumerated() {
                                     let entry = Video(rank: index + 1, data: entry as! JSONDictionary)
                                     videos.append(entry)
                                     }
                             
-                                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                                    dispatch_async(dispatch_get_main_queue()) {
+//                                  let priority = DispatchQueue.GlobalQueuePriority.high
+//                                  DispatchQueue.global(priority: priority).async
+                            DispatchQueue.global(qos: .utility).async
+                                {
+                                    DispatchQueue.main.async {
                                         completion(videos) // pass back videos array
                                     }
                                 }
@@ -51,7 +53,7 @@ class DownloadManager {
                         print("NSJSONSerialization failed!")
                     }
                 }
-            }
+            }) 
         task.resume()  // else stays in suspended state
     }
 }

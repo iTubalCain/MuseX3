@@ -20,17 +20,17 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var rightsLabel: UILabel!
     
-    @IBAction func socialMedia(sender: UIBarButtonItem) {
+    @IBAction func socialMedia(_ sender: UIBarButtonItem) {
         let messageArray = ["Have you seen this music video called \"\(musicVideo.songTitle)\" by \(musicVideo.artist) yet? You can watch it and tell me what you think of it.\n",
                           musicVideo.videoURL]
         
         let activityVC = UIActivityViewController(activityItems: messageArray, applicationActivities: nil)
         activityVC.title = "Share with friends"
-        activityVC.excludedActivityTypes = [UIActivityTypePostToFlickr]  // exclude whatever
+        activityVC.excludedActivityTypes = [UIActivityType.postToFlickr]  // exclude whatever
         
         activityVC.completionWithItemsHandler = { // post processing
             (activity, items, success, error) in
-            if activity == UIActivityTypeMail { // can't email on simulator
+            if activity == UIActivityType.mail { // can't email on simulator
                 print("email selected")
             } else {
                 print("Popped over!")
@@ -38,26 +38,26 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
         }
 
         // iPad requires popover as container
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
             activityVC.popoverPresentationController?.sourceView = self.view
             activityVC.popoverPresentationController?.barButtonItem = sender
         }
         
-        self.presentViewController(activityVC, animated: true, completion: nil)
+        self.present(activityVC, animated: true, completion: nil)
     }
     
-    @IBAction func playVideo(sender: UIBarButtonItem) {
-        let asset = AVURLAsset(URL: NSURL(string: musicVideo.videoURL)!)
+    @IBAction func playVideo(_ sender: UIBarButtonItem) {
+        let asset = AVURLAsset(url: URL(string: musicVideo.videoURL)!)
         let playerItem = AVPlayerItem(asset: asset)
-        let player = AVPlayer()
-        let playerLayer = AVPlayerLayer(player: player)
+//        let player = AVPlayer()
+//        let playerLayer = AVPlayerLayer(player: player)
         let playerVC = AVPlayerViewController()
         
 //        let playerVC = AVPlayerViewController()
-        playerVC.player = AVPlayer(URL: NSURL(string: musicVideo.videoURL)!)
-        self.presentViewController(playerVC, animated: true) {
+        playerVC.player = AVPlayer(url: URL(string: musicVideo.videoURL)!)
+        self.present(playerVC, animated: true) {
             playerVC.player?.play()
-            playerVC.player?.replaceCurrentItemWithPlayerItem(playerItem)
+            playerVC.player?.replaceCurrentItem(with: playerItem)
         }
     }
     
@@ -66,17 +66,17 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(preferredFontChanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(preferredFontChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
 
-        //      title = musicVideo.artist
-        title = "#\(musicVideo.rank) on iTunes"
+//              title = musicVideo.artist
+        title = "#\(musicVideo.rank)"
         detailTitleLabel.text = "\"\(musicVideo.songTitle)\""
         artistLabel.text = musicVideo.artist
         genreLabel.text = musicVideo.genre
         priceLabel.text = musicVideo.price
         rightsLabel.text = musicVideo.rights
         if musicVideo.imageData != nil {
-            videoImage.image = UIImage(data: musicVideo.imageData!)
+            videoImage.image = UIImage(data: musicVideo.imageData! as Data)
         } else {
             videoImage.image = UIImage(contentsOfFile: "imageNotAvailable")
         }
@@ -84,15 +84,15 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
     func preferredFontChanged() {
         // title.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        artistLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        detailTitleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        genreLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        priceLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        rightsLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+        artistLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        detailTitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        genreLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        priceLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        rightsLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
 }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
 
 }
