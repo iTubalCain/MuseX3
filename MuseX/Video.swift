@@ -15,31 +15,19 @@ class Video {
     fileprivate var _songTitle  =   NO_STRING_FOUND
     fileprivate var _rights     =   NO_STRING_FOUND
     fileprivate var _price      =   NO_STRING_FOUND
-    fileprivate var _imageURLs  =   [LOW_QUALITY : NO_STRING_FOUND,
-                                 MEDIUM_QUALITY : NO_STRING_FOUND,
-                                 HIGH_QUALITY   : NO_STRING_FOUND]
+    fileprivate var _imageURLs  =   [LOW_QUALITY    : NO_STRING_FOUND,
+                                     MEDIUM_QUALITY : NO_STRING_FOUND,
+                                     HIGH_QUALITY   : NO_STRING_FOUND]
     fileprivate var _artist     =   NO_STRING_FOUND
     fileprivate var _videoURL   =   NO_STRING_FOUND
     fileprivate var _mId        =   NO_STRING_FOUND
     fileprivate var _genre      =   NO_STRING_FOUND
     fileprivate var _iTunesURL  =   NO_STRING_FOUND
     fileprivate var _releaseDate =  NO_STRING_FOUND
-    
-    fileprivate var _imageData  :   Data?
-    fileprivate var _image      :   UIImage?
+    fileprivate var _image : UIImage?
     
  // Getters...
     
-    var rank: Int {
-        get {
-            return _rank
-            }
-        set {
-            if (newValue > 0) && (rank < newValue) {
-                _rank = newValue
-            }
-        }
-    }
     var songTitle:      String   { return _songTitle }
     var rights:         String   { return _rights }
     var price:          String   { return _price }
@@ -51,26 +39,29 @@ class Video {
     var iTunesURL:      String   { return _iTunesURL }
     var releaseDate:    String   { return _releaseDate }
 
-    var imageData: Data? { // holds downloaded image data
-        get {
-            return _imageData
-        }
-        set {
-            _imageData = newValue
-        }
-    }
-    
     var image: UIImage? { // holds downloaded image
         get {
+//            if _image == nil {
+//                return UIImage(contentsOfFile: "imageNotAvailable.jpeg")
+//            }
             return _image
         }
+    }
+    
+    var rank: Int {
+        get {
+            return _rank
+        }
         set {
-            _image = newValue
+            if (newValue > 0) && (rank < newValue) {
+                _rank = newValue
+            }
         }
     }
-/// init with JSON Dictionary
+
+    // init with JSON Dictionary
     
-    init(rank: Int, data: JSONDictionary){
+    init(rank: Int, data: JSONDictionary) {
         self.rank = rank
         if let imName = data["im:name"] as? JSONDictionary,
             let label = imName["label"] as? String {
@@ -87,17 +78,16 @@ class Video {
             _price = label
         }
  
-        // TODO: use 300x300 if low quality or cellular
-        
         if let imImage = data["im:image"] as? JSONArray,
             let image = imImage[2] as? JSONDictionary,
             let imageURL = image["label"] as? String {
             _imageURLs[LOW_QUALITY]     = imageURL
             _imageURLs[MEDIUM_QUALITY]  = imageURL.replacingOccurrences(of: "100x100", with: "300x300")
             _imageURLs[HIGH_QUALITY]    = imageURL.replacingOccurrences(of: "100x100", with: "600x600")
+            queueImageFetch(imageView: nil)
         }
 
-    if let imArtist = data["im:artist"] as? JSONDictionary,
+        if let imArtist = data["im:artist"] as? JSONDictionary,
             let label = imArtist["label"] as? String {
             _artist = label
         }
@@ -132,6 +122,40 @@ class Video {
             _releaseDate = label
         }
         
-    }
+    } // end init
     
+    /**
+     
+     queueImageFetch
+    
+    */
+    
+    func queueImageFetch(imageView: UIImageView?) {
+        
+        if self._image == nil {
+            networkQueue.async { [unowned self] in // download image data
+                
+                var imageQuality : String
+                switch UserDefaults.standard.integer(forKey: UD_IMAGE_QUALITY) {
+                    case 0: imageQuality = LOW_QUALITY
+                    case 1: imageQuality = MEDIUM_QUALITY
+                    case 2: imageQuality = HIGH_QUALITY
+                    default:imageQuality = LOW_QUALITY
+                }
+                
+                let data = NSData(contentsOf: NSURL(string: self.imageURLs[imageQuality]!)! as URL)
+                if data != nil {
+                    self._image = UIImage(data: data! as Data)
+                } else {
+                    self._image = UIImage(contentsOfFile: "imageNotAvailable.jpeg")
+                }
+            }
+        }
+        if imageView != nil {
+            DispatchQueue.main.async(qos: .userInitiated) { [unowned self] in
+                imageView?.image = self._image   // update UI
+            }
+        }
+    }
+
 }

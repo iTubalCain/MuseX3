@@ -17,113 +17,83 @@ class MusicVideoVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
     @IBAction func refreshControl(_ sender: UIRefreshControl) {
         refreshControl?.endRefreshing()
         if searchResultsController.isActive {
-            refreshControl?.attributedTitle = NSAttributedString(string: "Refresh not available while searching")
+            refreshControl?.attributedTitle = NSAttributedString(string: "Refresh unavailable while searching")
         } else {
-            runAPI()
+            getVideos()
         }
     }
     
-    fileprivate struct StoryBoard {
-        static let cellReuseIdentifier = "customCell"
-        static let segueIdentifier =  "videoDetail"
-    }
-
     var videos = [Video]()
     
-    var maxSongs = 10 // upper limit = 200
-    
-    func getMaxSongs() {
-        maxSongs = Int(UserDefaults.standard.float(forKey: "Settings: Top x"))
-        if maxSongs < 1 {
-            maxSongs = MAX_SONGS
-            UserDefaults.standard.set(Float(maxSongs), forKey: "Settings: Top x")
+    fileprivate struct StoryBoard {
+        static let cellReuseIdentifier  = "customCell"
+        static let segueIdentifier      = "videoDetail"
+    }
+
+    fileprivate var maxVideos: Int {
+        get {
+            // Set up refresh control text
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+            let refreshDate = dateFormatter.string(from: Date())
+            refreshControl?.attributedTitle = NSAttributedString(string: String(refreshDate))
+
+            var maxVideos = Int(UserDefaults.standard.float(forKey: UD_TOP_X))
+            if maxVideos < 1 || maxVideos > 199 { // iTunes API upper limit = 200
+                maxVideos = MAX_VIDEOS_DEFAULT
+                UserDefaults.standard.set(Float(maxVideos), forKey: UD_TOP_X)
+            }
+            return maxVideos
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
-        let refreshDate = dateFormatter.string(from: Date())
-        refreshControl?.attributedTitle = NSAttributedString(string: String(refreshDate))
+    }
+
+    fileprivate func initSearchController() {
+        self.definesPresentationContext = true
+        self.searchResultsController.dimsBackgroundDuringPresentation = false
+        self.searchResultsController.hidesNavigationBarDuringPresentation = true
+        self.searchResultsController.searchBar.barTintColor = UIColor.black
+        self.searchResultsController.searchBar.placeholder = "Search"
+        self.searchResultsController.searchBar.searchBarStyle = UISearchBarStyle.prominent
+        self.searchResultsController.searchBar.tintColor = UIColor.white
+        self.searchResultsController.searchBar.scopeButtonTitles = ["All", "Artist", "Genre", "Song"]
+        self.searchResultsController.searchBar.delegate = self
+        self.searchResultsController.searchResultsUpdater = self     // delegate
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initSearchController()
+        
         // Observers
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityStatusChanged), name: NSNotification.Name(rawValue: "ReachStatusChanged"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(preferredFontChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
-        
-        reachabilityStatusChanged()
-        // print(reachabilityStatus)
-            }
+        }
     
     func preferredFontChanged() {
         
     }
     
-    func runAPI() {
-        getMaxSongs()
-        let api = DownloadManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(maxSongs)/json", completion: didLoadData)
-    }
-    
-    func didLoadData(_ videos: [Video]) {
-        self.videos = videos
+    fileprivate func getVideos() {
         
-//        for (index, video) in videos.enumerate() {
-//            print("\(index + 1): \(video.releaseDate)")
-//        }
-        
-        title = "MuseX" // NavVC title appears on all nav pages as back link
-
-        // set up search controller
-        
-        definesPresentationContext = true
-        searchResultsController.dimsBackgroundDuringPresentation = false
-        searchResultsController.hidesNavigationBarDuringPresentation = true
-        searchResultsController.searchBar.barTintColor = UIColor.black
-        searchResultsController.searchBar.placeholder = "Search"
-//        searchResultsController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
-        searchResultsController.searchBar.tintColor = UIColor.white
-        searchResultsController.searchBar.scopeButtonTitles = ["All", "Artist", "Genre", "Song"]
-        searchResultsController.searchBar.delegate = self
-        searchResultsController.searchResultsUpdater = self     // delegate
-       
-        tableView.reloadData()  // refresh tableView
-    }
-    
-    func reachabilityStatusChanged() {
-        switch reachabilityStatus {
-        case NO_ACCESS:
-            // view.backgroundColor = UIColor.orangeColor()
-            // Hack to avoid warning: "Presenting view controllers on detached view controllers is discouraged"
-            DispatchQueue.main.async {
-            let alert = UIAlertController(title: NO_ACCESS, message: "Check your Internet connection", preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "Ok", style: .default) {
-                action -> Void in print("Ok")
+        JSONTask().deserializeVideos(
+            "https://itunes.apple.com/us/rss/topmusicvideos/limit=\(maxVideos)/json")
+                { videos, errorMessage in
+                
+                    if errorMessage != "" {
+                        let alert = UIAlertController(title: "Network problem", message: errorMessage, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Ok", style: .default)
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        self.videos = videos
+                        self.tableView.reloadData()  // refresh tableView
+                        self.title = "MuseX" // NavVC title appears on all nav pages as back link
+                        //        for (index, video) in videos.enumerated() {
+                        //            print("====> \(index + 1): \(video.artist)")
+                        //        }
+                    }
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default) {
-                action -> Void in print("Cancel")
-            }
-            let deleteAction = UIAlertAction(title: "Delete", style: .default) {
-                action -> Void in print("Delete")
-            }
-            
-            alert.addAction(okAction)
-            alert.addAction(cancelAction)
-            alert.addAction(deleteAction)
-            
-            self.present(alert, animated: true, completion: nil)
-            } // end Hack
-            
-        default:
-            if videos.count > 0 {
-                print("Do not refresh API") // data already loaded
-            } else {
-                runAPI()
-            }
-        }
     }
     
     // MARK: - Table view data source
@@ -145,9 +115,9 @@ class MusicVideoVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
         let cell = tableView.dequeueReusableCell(withIdentifier: StoryBoard.cellReuseIdentifier, for: indexPath) as! MusicVideoTableViewCell
 
         if searchResultsController.isActive {         // in searchBar
-            cell.video = searchResults[(indexPath as NSIndexPath).row]
+            cell.musicVideo = searchResults[(indexPath as NSIndexPath).row]
         } else {
-            cell.video = videos[(indexPath as NSIndexPath).row]
+            cell.musicVideo = videos[(indexPath as NSIndexPath).row]
         }
         return cell
     }
@@ -171,9 +141,9 @@ class MusicVideoVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
     
     // MARK: - Search
     
-    var searchResults = [Video]()
+    fileprivate var searchResults = [Video]()
     
-    let searchResultsController = UISearchController(searchResultsController: nil)
+    fileprivate let searchResultsController = UISearchController(searchResultsController: nil)
     // nil means display search results in same view
     
     // UISearchResultsUpdating protocol method
@@ -182,7 +152,7 @@ class MusicVideoVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
         searchFiltered(searchResultsController.searchBar.text!, scope: scope)
     }
     
-    func searchFiltered(_ searchText: String, scope: String = "All") {
+    fileprivate func searchFiltered(_ searchText: String, scope: String = "All") {
         searchResults = videos.filter { video in
             switch scope {
                 case "All":
@@ -207,7 +177,6 @@ class MusicVideoVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
     // MARK: - Clean up
 
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ReachStatusChanged"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
     

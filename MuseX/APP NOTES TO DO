@@ -2,3 +2,13 @@
 Settings: Audio Only!
     Image quality
 
+Preload images
+
+Begin downloading song on detail screen
+
+Check both orientations for issues!!!!
+
+explicit=true
+https://itunes.apple.com/us/rss/topmusicvideos/limit=10/explicit=true/json
+
+Download progress for tunes

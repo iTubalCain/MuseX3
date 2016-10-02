@@ -68,24 +68,23 @@ class VideoDetailVC: UIViewController, UIPopoverPresentationControllerDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(preferredFontChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
 
-//              title = musicVideo.artist
+//        title = musicVideo.artist
         title = "#\(musicVideo.rank)"
         detailTitleLabel.text = "\"\(musicVideo.songTitle)\""
         artistLabel.text = musicVideo.artist
-        genreLabel.text = musicVideo.genre
-        priceLabel.text = musicVideo.price
+        genreLabel.text  = musicVideo.genre
+        priceLabel.text  = musicVideo.price
         rightsLabel.text = musicVideo.rights
-        if musicVideo.imageData != nil {
-            videoImage.image = UIImage(data: musicVideo.imageData! as Data)
-        } else {
-            videoImage.image = UIImage(contentsOfFile: "imageNotAvailable")
-        }
+//        videoImage.image = musicVideo.image
+        musicVideo?.queueImageFetch(imageView: videoImage)
+
+
     }
 
     func preferredFontChanged() {
         // title.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        artistLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
-        detailTitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        artistLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
+        detailTitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2)
         genreLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
         priceLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
         rightsLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)

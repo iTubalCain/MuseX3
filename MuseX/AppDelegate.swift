@@ -8,49 +8,20 @@
 
 import UIKit
 
-var reachability        : Reachability?
-var reachabilityStatus  = ""
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var internetCheck: Reachability?
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil))
         
-        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: NSNotification.Name.reachabilityChanged, object: nil)
-        internetCheck = Reachability.forInternetConnection()
-        internetCheck?.startNotifier()  // observe
-        statusChangedWithReachability(internetCheck!) // prime the pump
-        
 //        UINavigationBar.appearance().barTintColor = UIColor(red: 0.99, green: 0.94, blue: 0.31, alpha: 1.0)
 //        UINavigationBar.appearance().tintColor = UIColor.white
 //        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(red: 0.70, green: 0.80, blue: 0.27, alpha: 1.0)]
-        
+//        
         return true
-    }
-    
-    func reachabilityChanged(_ notification: Notification) {
-        reachability = notification.object as? Reachability
-        statusChangedWithReachability(reachability!)
-    }
-    
-    func statusChangedWithReachability(_ currentReachabilityStatus: Reachability) {
-        let networkStatus : NetworkStatus = currentReachabilityStatus.currentReachabilityStatus()
-        
-        switch networkStatus.rawValue {
-        case NotReachable.rawValue:     reachabilityStatus = NO_ACCESS
-        case ReachableViaWiFi.rawValue: reachabilityStatus = WIFI
-        case ReachableViaWWAN.rawValue: reachabilityStatus = WWAN
-        default: return
-        }
-        
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "ReachStatusChanged"), object: nil)
-        // Notify VC
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -73,9 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.reachabilityChanged, object: nil)
-    }
+        }
 
 
 }

@@ -12,24 +12,30 @@ import Foundation
 
 let NO_STRING_FOUND = "-none-"
 
+let MAX_VIDEOS_DEFAULT = 10
+
 // imageURLS array indices
 let LOW_QUALITY     = "LOW_QUALITY"
 let MEDIUM_QUALITY  = "MEDIUM_QUALITY"
 let HIGH_QUALITY    = "HIGH_QUALITY"
-
-
-// Reachability
-let NO_ACCESS   = "No Internet access available"
-let WIFI        = "WiFi access available"
-let WWAN        = "Cellular access available"
-
-let MAX_SONGS = 10
 
 // Globals
 
 typealias JSONArray = [AnyObject]
 typealias JSONDictionary = [String: AnyObject]
 
+// Queues
+
+let networkQueue = DispatchQueue(label: "io.xamples.network",
+                                 qos: .userInitiated,
+                                 target: nil)
+
 // structs
+
+// UserDefaults keys
+
+let UD_EXPLICIT_CONTENT = "Settings: Explicit Content"
+let UD_IMAGE_QUALITY    = "Settings: Image Quality"
+let UD_TOP_X            = "Settings: Top x"
 
 

@@ -15,24 +15,25 @@ import UIKit
 class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var aboutLabel: UILabel!
+    @IBOutlet weak var explicitContentLabel: UILabel!
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var imageQualityLabel: UILabel!
-    
     @IBOutlet weak var imageQualityOutlet: UISegmentedControl!
+    
+    @IBOutlet weak var explicitContentSwitch: UISwitch!
     @IBAction func imageQualitySegmentedControl(_ sender: UISegmentedControl) {
-        UserDefaults.standard.set(imageQualityOutlet.selectedSegmentIndex, forKey: "Settings: Image Quality")
-        print("\(imageQualityOutlet.selectedSegmentIndex)")
+        UserDefaults.standard.set(imageQualityOutlet.selectedSegmentIndex, forKey: UD_IMAGE_QUALITY)
     }
 
     @IBOutlet weak var topXVideos: UILabel!
     @IBOutlet weak var topXVideosSlider: UISlider!
     
-//    @IBAction func bestImageQualitySwitch(sender: UISwitch) {
-//        NSUserDefaults.standardUserDefaults().setBool((imageQualitySwitch.on ? true : false), forKey: "Settings: Best Image")
-//    }
+    @IBAction func explicitContentAllowed(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: UD_EXPLICIT_CONTENT)
+    }
     
     @IBAction func topXSlider(_ sender: UISlider) {
-        UserDefaults.standard.set(topXVideosSlider.value, forKey: "Settings: Top x")
+        UserDefaults.standard.set(topXVideosSlider.value, forKey: UD_TOP_X)
         topXVideos.text = String(Int(topXVideosSlider.value))
     }
     
@@ -44,20 +45,20 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(preferredFontChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
         
         // set defaults
-        imageQualityOutlet.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "Settings: Image Quality")
-//        if let sliderValue = NSUserDefaults.standardUserDefaults().objectForKey("Settings: Top x") as? Float {
-//            topXVideos.text = String(Int(sliderValue))
-//            topXVideosSlider.value = sliderValue
-//        }
-        topXVideosSlider.value = UserDefaults.standard.float(forKey: "Settings: Top x")
+        explicitContentSwitch.isOn = UserDefaults.standard.bool(forKey: UD_EXPLICIT_CONTENT)
+
+        imageQualityOutlet.selectedSegmentIndex = UserDefaults.standard.integer(forKey: UD_IMAGE_QUALITY)
+
+        topXVideosSlider.value = UserDefaults.standard.float(forKey: UD_TOP_X)
         topXVideos.text = String(Int(topXVideosSlider.value))
    }
     
     func preferredFontChanged()  {
-        aboutLabel.font     = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-        feedbackLabel.font  = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-        imageQualityLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-        topXVideos.font     = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        aboutLabel.font             = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        explicitContentLabel.font   = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        feedbackLabel.font          = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        imageQualityLabel.font      = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        topXVideos.font             = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,11 +96,11 @@ class SettingsVC: UITableViewController, MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
-        case MFMailComposeResult.cancelled.rawValue: print("Mail cancelled")
-        case MFMailComposeResult.saved.rawValue:     print("Mail saved")
-        case MFMailComposeResult.sent.rawValue:      print("Mail sent")
-        case MFMailComposeResult.failed.rawValue:    print("Mail failed")
-        default: print("Unknown mail issue")
+            case MFMailComposeResult.cancelled.rawValue: print("Mail cancelled")
+            case MFMailComposeResult.saved.rawValue:     print("Mail saved")
+            case MFMailComposeResult.sent.rawValue:      print("Mail sent")
+            case MFMailComposeResult.failed.rawValue:    print("Mail failed")
+            default: print("Unknown mail issue")
         }
         self.dismiss(animated: true, completion: nil)
     }
